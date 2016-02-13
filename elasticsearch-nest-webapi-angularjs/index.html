@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Introduction to Elasticsearch with NEST, ASP.NET Web API 2 and AngularJS</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/site.css" rel="stylesheet" />
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/app/app.js"></script>
+</head>
+<body ng-app="elasticsearch" ng-controller="searchController">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form ng-submit="search()">
+                <input class="search-input col-md-12" autofocus type="search" ng-model="query" />
+                <button class="search-button" type="submit"><i class="glyphicon glyphicon-search">Search</i></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row" ng-hide="isLoading">
+        <div class="row col-md-12">
+            <p>{{message}}</p>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row" ng-repeat="item in items">
+                    <div class="col-md-2">
+                        <div class="row col-md-12">
+                            Votes: <span class="badge">{{item.Score}}</span>
+                            Views: <span class="badge">{{item.ViewCount}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row col-md-12">
+                            <a ng-click="selectPost(item.Id)">
+                                <h3>{{item.Title}}</h3>
+                            </a>
+                        </div>
+                        <div class="row col-md-12">
+                            <p>{{item.Body}}</p>
+                        </div>
+                        <div class="row col-md-12">
+                            <span ng-repeat="tag in item.Tags" class="label label-info">{{tag}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
