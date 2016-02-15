@@ -8,13 +8,13 @@ Introduction to Elasticsearch with NEST, ASP.NET Web API 2 and AngularJS
 
 ##Download test data
 
-* Download test data from https://archive.org/download/stackexchange/stackoverflow.com-Posts.7z
-* Unzip the file and place it in the `data` folder.
+* Download test data from https://archive.org/download/stackexchange,
+* Unzip the archive and copy the `Posts.xml` file to the `data` folder.
 
 ##Create the index
 
 * Open the solution in Visual Studio 2015, select Restore NuGet packages and rebuild the solution.
-[*Write how to run the console application to populate the index.*]
+* Make a GET request to http://localhost:53694/api/index?fileName=posts.xml&maxItems=10000
 
 ##Run the application
 * Debug or Start without debugging to run the Web API in IIS Express.
