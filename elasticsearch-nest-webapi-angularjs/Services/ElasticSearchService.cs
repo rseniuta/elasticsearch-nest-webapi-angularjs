@@ -10,10 +10,7 @@ namespace elasticsearch_nest_webapi_angularjs.Services
 
         public ElasticSearchService()
         {
-            var node = new Uri("http://localhost:9200");
-            var settings = new ConnectionSettings(node);
-            settings.DefaultIndex("stack");
-            client = new ElasticClient(settings);
+            client = ElasticConfig.GetClient();
         }
 
         public SearchResult<Post> Search(string query, int page, int pageSize)
