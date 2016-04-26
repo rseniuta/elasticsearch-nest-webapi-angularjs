@@ -21,10 +21,15 @@ namespace elasticsearch_nest_webapi_angularjs.Services
 
         public void CreateIndex(string fileName, int maxItems)
         {
-            if (!client.IndexExists(Indices.Index(new IndexName() {Name = ElasticConfig.IndexName})).Exists)
+            if (!client.IndexExists(ElasticConfig.IndexName).Exists)
             {
-                client.CreateIndex(ElasticConfig.IndexName);
+                var indexDescriptor = new CreateIndexDescriptor(ElasticConfig.IndexName)
+                    .Mappings(ms => ms
+                        .Map<Post>(m => m.AutoMap()));
+
+                client.CreateIndex(ElasticConfig.IndexName, i=> indexDescriptor);
             }
+
             BulkIndex(HostingEnvironment.MapPath("~/data/" + fileName), maxItems);
         }
 
@@ -49,27 +54,7 @@ namespace elasticsearch_nest_webapi_angularjs.Services
                                     Title = el.Attribute("Title") != null ? el.Attribute("Title").Value : "",
                                     CreationDate = DateTime.Parse(el.Attribute("CreationDate").Value),
                                     Score = int.Parse(el.Attribute("Score").Value),
-                                    ViewCount =
-                                        el.Attribute("ViewCount") != null
-                                            ? int.Parse(el.Attribute("ViewCount").Value)
-                                            : 0,
                                     Body = HtmlRemoval.StripTagsRegex(el.Attribute("Body").Value),
-                                    LastEditDate =
-                                        el.Attribute("LastEditDate") != null
-                                            ? (DateTime?)DateTime.Parse(el.Attribute("LastEditDate").Value)
-                                            : null,
-                                    LastActivityDate =
-                                        el.Attribute("LastActivityDate") != null
-                                            ? (DateTime?)DateTime.Parse(el.Attribute("LastActivityDate").Value)
-                                            : null,
-                                    FavoriteCount =
-                                        el.Attribute("FavoriteCount") != null
-                                            ? int.Parse(el.Attribute("FavoriteCount").Value)
-                                            : 0,
-                                    CommentCount =
-                                        el.Attribute("CommentCount") != null
-                                            ? int.Parse(el.Attribute("CommentCount").Value)
-                                            : 0,
                                     Tags =
                                         el.Attribute("Tags") != null
                                             ? el.Attribute("Tags")
@@ -86,6 +71,7 @@ namespace elasticsearch_nest_webapi_angularjs.Services
                                             ? int.Parse(el.Attribute("AnswerCount").Value)
                                             : 0
                                 };
+                                post.Suggest = post.Tags;
                                 yield return post;
                             }
                         }
@@ -102,7 +88,7 @@ namespace elasticsearch_nest_webapi_angularjs.Services
             foreach (var batches in LoadPostsFromFile(path).Take(take).Batch(batch))
             {
                 i++;
-                var result = client.IndexMany<Post>(batches, ElasticConfig.IndexName);
+                var result = client.IndexMany<Post>(batches, "stackoverflow");
             }
         }
     }

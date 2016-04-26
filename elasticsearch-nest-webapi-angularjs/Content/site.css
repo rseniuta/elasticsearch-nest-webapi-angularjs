@@ -1,19 +1,64 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.btn-search {
+    height: 34px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
+a{
+    cursor: pointer;
+}
+
+.label{
+    padding: 5px;
+    margin-right: 1px;
+}
+
+.label-info a{
+    color: #fff;
+}
+
+.label-round{
+    border-radius: 50%;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.margin-top{
+    margin-top: 40px;
+}
+
+.margin-bottom{
+    margin-bottom: 40px;
+}
+
+.margin-bottom-small {
+    margin-bottom: 20px;
+}
+
+.category-list, .sugestion-list{
+    list-style: none;
+    padding-left: 0;
+}
+
+.category-list li{
+    margin-bottom: 5px;
+}
+
+.category-list small{
+    padding-top: 3px;
+}
+
+.category-list .label-primary a {
+    color: #fff;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.sugestion-list {
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+.sugestion-list li{
+    display: inline-block;
     padding-right: 15px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
-a { cursor: pointer;}

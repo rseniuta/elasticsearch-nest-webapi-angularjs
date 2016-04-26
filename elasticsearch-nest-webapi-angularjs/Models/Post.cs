@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Nest;
 
 namespace elasticsearch_nest_webapi_angularjs.Models
 {
@@ -11,22 +12,16 @@ namespace elasticsearch_nest_webapi_angularjs.Models
         
         public int? Score { get; set; }
         
-        public int? ViewCount { get; set; }
+        public int? AnswerCount { get; set; }
         
         public string Body { get; set; }
         
         public string Title { get; set; }
-        
+
+        [String(Index = FieldIndexOption.NotAnalyzed)]
         public IEnumerable<string> Tags { get; set; }
-        
-        public int? AnswerCount { get; set; }
-        
-        public int? CommentCount { get; set; }
-        
-        public int? FavoriteCount { get; set; }
-        
-        public DateTime? LastEditDate { get; set; }
-        
-        public DateTime? LastActivityDate { get; set; }
+
+        [Completion]
+        public IEnumerable<string> Suggest { get; set; }
     }
 }

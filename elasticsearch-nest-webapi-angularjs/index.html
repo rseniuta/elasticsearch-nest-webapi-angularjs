@@ -3,53 +3,83 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Introduction to Elasticsearch with NEST, ASP.NET Web API 2 and AngularJS</title>
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="Content/site.css" rel="stylesheet" />
+    <title>Search with Elasticsearch</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link href="Content/Site.css" rel="stylesheet" />
     <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/ui-bootstrap-custom-tpls-0.14.3.min.js"></script>
     <script src="Scripts/app/app.js"></script>
 </head>
 <body ng-app="elasticsearch" ng-controller="searchController">
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form ng-submit="search()">
-                <input class="search-input col-md-12" autofocus type="search" ng-model="query" />
-                <button class="search-button" type="submit"><i class="glyphicon glyphicon-search">Search</i></button>
-            </form>
-        </div>
-    </div>
-
-    <div class="row" ng-hide="isLoading">
-        <div class="row col-md-12">
-            <p>{{message}}</p>
+    <div class="container margin-top margin-bottom">
+        <div class="row margin-bottom-small">
+            <div class="col-md-12">
+                <form ng-submit="search()">
+                    <div class="input-group">
+                        <input class="form-control" autofocus type="search" placeholder="Search for..." ng-model="query" 
+                               uib-typeahead="item for item in autocomplete($viewValue)"
+                               typeahead-on-select="typeaheadOnSelect($item, $model, $label, $event)">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-search" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div>
         </div>
         <div class="row">
-            <div class="col-md-9">
-                <div class="row" ng-repeat="item in items">
-                    <div class="col-md-2">
-                        <div class="row col-md-12">
-                            Votes: <span class="badge">{{item.Score}}</span>
-                            Views: <span class="badge">{{item.ViewCount}}</span>
+            <div class="col-md-12">
+                <div ng-show="suggested.length > 0" >
+                    <h4>Did you mean?</h4>
+                    <ul class="sugestion-list">
+                        <li ng-repeat="item in suggested"><a ng-click="">{{item}}</a></li>
+                    </ul>
+                </div>
+                <h4 ng-show="total > 0">Found <b>{{total}}</b> posts in <b>{{took}}</b> ms.</h4>
+                <h4 ng-show="message">{{message}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-xs-3">
+                <div ng-show="total > 0">
+                    <h4>Posts by tag</h4>
+                    <ul class="category-list">
+                        <li ng-repeat="(tag, count) in aggs">
+                            <span ng-class="{'label-primary label': isActive(tag)}">
+                                <a ng-click="toggleFilters(tag)">{{tag}}</a>
+                            </span><small class="pull-right">({{count}})</small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-9 col-sm-offset-1">
+                <div class="row margin-bottom-small" ng-repeat="item in items" ng-hide="isLoading">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a ng-click="selectPost(item.Id)">
+                                    <h3>{{item.Title}}</h3>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="row col-md-12">
-                            <a ng-click="selectPost(item.Id)">
-                                <h3>{{item.Title}}</h3>
-                            </a>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>{{item.Body}}</p>
+                            </div>
                         </div>
-                        <div class="row col-md-12">
-                            <p>{{item.Body}}</p>
-                        </div>
-                        <div class="row col-md-12">
-                            <span ng-repeat="tag in item.Tags" class="label label-info">{{tag}}</span>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <span ng-repeat="tag in item.Tags" class="label label-primary">{{tag}}</span>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <small>Votes: <span class="label label-info label-round">{{item.Score}}</span></small>
+                                <small>Answers: <span class="label label-info label-round">{{item.AnswerCount}}</span></small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

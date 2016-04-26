@@ -18,9 +18,9 @@ namespace elasticsearch_nest_webapi_angularjs.Services
 
         public static IElasticClient GetClient()
         {
-            var node = new Uri(ElastisearchUrl);
+            var node = new Uri("http://localhost:9200");
             var settings = new ConnectionSettings(node);
-            settings.DefaultIndex(IndexName);
+            settings.DefaultIndex("stackoverflow");
             return new ElasticClient(settings);
         }
     }

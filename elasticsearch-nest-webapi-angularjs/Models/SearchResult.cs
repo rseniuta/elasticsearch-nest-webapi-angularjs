@@ -11,5 +11,7 @@ namespace elasticsearch_nest_webapi_angularjs.Models
         public IEnumerable<T> Results { get; set; }
 
         public int ElapsedMilliseconds { get; set; }
+
+        public Dictionary<string, long> AggregationsByTags { get; set; }
     }
 }
