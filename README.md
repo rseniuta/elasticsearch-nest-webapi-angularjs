@@ -1,9 +1,9 @@
 # elasticsearch-nest-webapi-angularjs
-Introduction to Elasticsearch with NEST, ASP.NET Web API 2 and AngularJS
+Introduction to Elasticsearch 2.3.0 with NEST, ASP.NET Web API 2 and AngularJS
 
 ##Installation
 
-* Install Elasticsearch from https://www.elastic.co/downloads/elasticsearch
+* Install Elasticsearch 2.3.0 from https://www.elastic.co/downloads/past-releases/elasticsearch-2-3-0
 * Ensure Elasticsearch is listening on http://localhost:9200/ 
 
 ##Download test data
