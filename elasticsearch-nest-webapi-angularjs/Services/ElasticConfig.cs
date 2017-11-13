@@ -20,7 +20,7 @@ namespace elasticsearch_nest_webapi_angularjs.Services
         {
             var node = new Uri("http://localhost:9200");
             var settings = new ConnectionSettings(node);
-            settings.DefaultIndex("stackoverflow");
+            settings.DefaultIndex(IndexName);
             return new ElasticClient(settings);
         }
     }
