@@ -88,7 +88,7 @@ namespace elasticsearch_nest_webapi_angularjs.Services
             foreach (var batches in LoadPostsFromFile(path).Take(take).Batch(batch))
             {
                 i++;
-                var result = client.IndexMany<Post>(batches, "stackoverflow");
+                var result = client.IndexMany<Post>(batches, ElasticConfig.IndexName);
             }
         }
     }
