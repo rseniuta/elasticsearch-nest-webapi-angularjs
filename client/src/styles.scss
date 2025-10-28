@@ -1,0 +1,38 @@
+@use 'bootstrap/scss/bootstrap' as *;
+
+:root {
+  color-scheme: light;
+  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #f3f4f6;
+  color: #0f172a;
+}
+
+a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+}
+
+.mat-mdc-card {
+  border-radius: 0.75rem !important;
+}
+
+.mat-mdc-chip {
+  --mdc-chip-label-text-color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.12) !important;
+}
+
+.mat-mdc-chip:hover {
+  background-color: rgba(13, 110, 253, 0.2) !important;
+}

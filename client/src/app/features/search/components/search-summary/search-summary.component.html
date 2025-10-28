@@ -1,0 +1,14 @@
+<section class="summary" *ngIf="!loading">
+  <ng-container *ngIf="summary as data">
+    <h2 class="summary__title" *ngIf="data.total > 0">
+      Found <strong>{{ data.total }}</strong> posts in <strong>{{ data.took }}</strong> ms.
+    </h2>
+    <p class="summary__message" *ngIf="data.total === 0 && data.message">{{ data.message }}</p>
+    <p class="summary__placeholder" *ngIf="data.total === 0 && !data.message">
+      Search for StackOverflow questions indexed in Elasticsearch.
+    </p>
+  </ng-container>
+</section>
+<div class="summary__loading" *ngIf="loading">
+  <mat-progress-spinner diameter="32" mode="indeterminate"></mat-progress-spinner>
+</div>

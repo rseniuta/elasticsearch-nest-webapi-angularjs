@@ -1,0 +1,28 @@
+<form class="search-form" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <mat-form-field class="search-field" appearance="outline">
+    <mat-label>Search for posts</mat-label>
+    <input
+      matInput
+      type="search"
+      formControlName="query"
+      autocomplete="off"
+      [matAutocomplete]="auto"
+      [disabled]="isLoading"
+      placeholder="Search for..."
+    />
+    <button mat-icon-button matSuffix type="submit" [disabled]="isLoading">
+      <mat-icon>search</mat-icon>
+    </button>
+    <mat-progress-spinner
+      *ngIf="isLoading"
+      matSuffix
+      diameter="20"
+      mode="indeterminate"
+    ></mat-progress-spinner>
+  </mat-form-field>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event.option.value)">
+    <mat-option *ngFor="let option of autocompleteOptions ?? []" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+</form>

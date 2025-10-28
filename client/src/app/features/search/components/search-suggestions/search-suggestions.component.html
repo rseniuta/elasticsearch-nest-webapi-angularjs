@@ -1,0 +1,8 @@
+<section class="suggestions" *ngIf="(suggestions ?? []).length > 0">
+  <h4 class="suggestions__title">Did you mean?</h4>
+  <mat-chip-set class="suggestions__chips" aria-label="Suggested search terms">
+    <mat-chip *ngFor="let suggestion of suggestions ?? []" (click)="onSuggestionClick(suggestion)" clickable>
+      {{ suggestion }}
+    </mat-chip>
+  </mat-chip-set>
+</section>

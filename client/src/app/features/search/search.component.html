@@ -1,0 +1,46 @@
+<section class="search-shell">
+  <div class="search-header">
+    <app-search-input
+      [formGroup]="searchForm"
+      [autocompleteOptions]="autocomplete$ | async"
+      [isLoading]="isLoading$ | async"
+      (submitted)="onQuerySubmit()"
+      (autocompleteSelected)="onAutocompleteSelected($event)"
+    ></app-search-input>
+  </div>
+
+  <div class="search-content">
+    <aside class="search-sidebar" *ngIf="(aggregations$ | async)?.length">
+      <app-search-filters
+        [filters]="aggregations$ | async"
+        [activeFilters]="activeFilters$ | async"
+        (filterToggled)="onFiltersChanged($event)"
+      ></app-search-filters>
+    </aside>
+
+    <section class="search-main">
+      <app-search-summary
+        [summary]="summary$ | async"
+        [loading]="isLoading$ | async"
+      ></app-search-summary>
+
+      <app-search-suggestions
+        [suggestions]="suggestedTerms$ | async"
+        (selected)="onSuggestionSelected($event)"
+      ></app-search-suggestions>
+
+      <app-search-results
+        [results]="(results$ | async)?.results ?? []"
+        [loading]="isLoading$ | async"
+        (selected)="onResultSelected($event)"
+      ></app-search-results>
+    </section>
+
+    <aside class="search-details" *ngIf="(selectedPost$ | async) as selected">
+      <app-search-detail
+        [post]="selected"
+        [similarPosts]="similarPosts$ | async"
+      ></app-search-detail>
+    </aside>
+  </div>
+</section>

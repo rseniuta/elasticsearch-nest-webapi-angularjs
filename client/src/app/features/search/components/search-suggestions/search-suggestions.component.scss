@@ -1,0 +1,16 @@
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.suggestions__title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.suggestions__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}

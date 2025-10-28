@@ -1,0 +1,35 @@
+<section class="results">
+  <div class="results__empty" *ngIf="!loading && results.length === 0">
+    <p>Start by entering a search query to explore indexed StackOverflow posts.</p>
+  </div>
+
+  <div class="results__list" *ngIf="!loading && results.length">
+    <mat-card class="results__card" *ngFor="let result of results" (click)="onSelect(result)" tabindex="0">
+      <mat-card-header>
+        <mat-card-title>{{ result.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="results__excerpt">{{ result.body }}</p>
+        <div class="results__meta">
+          <div class="results__tags">
+            <span class="results__tag" *ngFor="let tag of result.tags">{{ tag }}</span>
+          </div>
+          <div class="results__stats">
+            <span class="results__stat">
+              Votes
+              <span class="results__stat-value">{{ result.score }}</span>
+            </span>
+            <span class="results__stat">
+              Answers
+              <span class="results__stat-value">{{ result.answerCount }}</span>
+            </span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="results__loading" *ngIf="loading">
+    <mat-progress-spinner diameter="48" mode="indeterminate"></mat-progress-spinner>
+  </div>
+</section>

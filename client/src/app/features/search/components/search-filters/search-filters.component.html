@@ -1,0 +1,9 @@
+<h3 class="filters__title">Posts by tag</h3>
+<ul class="filters__list">
+  <li *ngFor="let filter of filters ?? []" class="filters__item">
+    <button type="button" class="filters__chip" [class.filters__chip--active]="isActive(filter.tag)" (click)="onToggle(filter.tag)">
+      {{ filter.tag }}
+    </button>
+    <span class="filters__count">({{ filter.count }})</span>
+  </li>
+</ul>

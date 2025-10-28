@@ -1,0 +1,29 @@
+<ng-container *ngIf="post as item; else placeholder">
+  <mat-card class="detail">
+    <mat-card-header>
+      <mat-card-title>{{ item.title }}</mat-card-title>
+      <mat-card-subtitle *ngIf="item.creationDate">{{ item.creationDate | date }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="detail__body">{{ item.body }}</p>
+      <div class="detail__tags">
+        <span class="detail__tag" *ngFor="let tag of item.tags">{{ tag }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <section class="detail__similar" *ngIf="(similarPosts ?? []).length">
+    <h4>Similar posts</h4>
+    <mat-list>
+      <mat-list-item *ngFor="let similar of similarPosts ?? []">
+        <div matListItemTitle>{{ similar.title }}</div>
+        <div matListItemLine>{{ similar.body }}</div>
+      </mat-list-item>
+    </mat-list>
+  </section>
+</ng-container>
+<ng-template #placeholder>
+  <div class="detail__placeholder">
+    <p>Select a post to view details and similar questions.</p>
+  </div>
+</ng-template>

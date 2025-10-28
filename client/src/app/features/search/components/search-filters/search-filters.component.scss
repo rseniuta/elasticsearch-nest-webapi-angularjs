@@ -1,0 +1,41 @@
+.filters__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.filters__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.filters__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filters__chip {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  background-color: #e9ecef;
+  color: #0f172a;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.filters__chip:hover,
+.filters__chip--active {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.filters__count {
+  color: #475467;
+  font-size: 0.875rem;
+}
