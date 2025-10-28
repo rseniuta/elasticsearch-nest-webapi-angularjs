@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "elasticsearch-nest-webapi-angularjs", "elasticsearch-nest-webapi-angularjs\elasticsearch-nest-webapi-angularjs.csproj", "{8FDA78B9-38D3-4284-86CB-6F533716FB90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticsearchWebApi.Core", "ElasticsearchWebApi.Core\ElasticsearchWebApi.Core.csproj", "{F2D7EDEC-AE19-4F97-97CB-F358DEA3A04C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticsearchWebApi.IntegrationTests", "tests\ElasticsearchWebApi.IntegrationTests\ElasticsearchWebApi.IntegrationTests.csproj", "{7E4FBC19-3001-4A0C-BBDC-606E516EE49C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{8FDA78B9-38D3-4284-86CB-6F533716FB90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FDA78B9-38D3-4284-86CB-6F533716FB90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FDA78B9-38D3-4284-86CB-6F533716FB90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2D7EDEC-AE19-4F97-97CB-F358DEA3A04C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D7EDEC-AE19-4F97-97CB-F358DEA3A04C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D7EDEC-AE19-4F97-97CB-F358DEA3A04C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D7EDEC-AE19-4F97-97CB-F358DEA3A04C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E4FBC19-3001-4A0C-BBDC-606E516EE49C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E4FBC19-3001-4A0C-BBDC-606E516EE49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E4FBC19-3001-4A0C-BBDC-606E516EE49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E4FBC19-3001-4A0C-BBDC-606E516EE49C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
